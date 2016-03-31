@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wxm.utils.CustomToast;
+import com.wxm.utils.PreferencesUtils;
 
 public abstract class BaseActivty extends FragmentActivity implements OnClickListener {
 
@@ -25,8 +26,8 @@ public abstract class BaseActivty extends FragmentActivity implements OnClickLis
 	}
 
 	protected View loadingView;
-	protected TextView bar_title, btn_right;
-	protected Button btn_left;
+	protected TextView bar_title;
+	protected ImageView btn_left, btn_right;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,8 @@ public abstract class BaseActivty extends FragmentActivity implements OnClickLis
 		ct = this;
 		initView();
 		bar_title = (TextView) findViewById(R.id.bar_title);
-		btn_right = (TextView) findViewById(R.id.btn_right);
-		btn_left = (Button) findViewById(R.id.btn_left);
+		btn_right = (ImageView) findViewById(R.id.btn_right);
+		btn_left = (ImageView) findViewById(R.id.btn_left);
 		loadingView = (View) findViewById(R.id.loading_view);
 		initData();
 	}
@@ -57,11 +58,20 @@ public abstract class BaseActivty extends FragmentActivity implements OnClickLis
 		super.onDestroy();
 	}
 
+	protected void setTitleName(String text) {
+		bar_title.setText(text);
+	}
+
+	protected int getType() {
+		return PreferencesUtils.getInt(ct, "type", 0);
+	}
+
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.btn_left) {
 			finish();
-//			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+			// overridePendingTransition(R.anim.slide_in_left,
+			// R.anim.slide_out_right);
 		}
 		processClick(v);
 	}
@@ -74,7 +84,8 @@ public abstract class BaseActivty extends FragmentActivity implements OnClickLis
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-//		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+		// overridePendingTransition(R.anim.slide_in_left,
+		// R.anim.slide_out_right);
 	}
 
 	public void showLonding() {
@@ -101,6 +112,7 @@ public abstract class BaseActivty extends FragmentActivity implements OnClickLis
 	@Override
 	public void startActivity(Intent intent) {
 		super.startActivity(intent);
-//		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+		// overridePendingTransition(R.anim.slide_in_right,
+		// R.anim.slide_out_left);
 	}
 }

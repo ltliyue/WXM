@@ -16,9 +16,6 @@ import com.wxm.utils.Util;
 
 /**
  * 注册界面
- * 
- * @date 2014-4-24
- * @author Stone
  */
 public class RegisterActivity extends Activity implements OnClickListener {
 
@@ -29,25 +26,29 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	private EditText etUsername;
 	private EditText etPassword;
 	private EditText etComfirmPsd;
-	private EditText etPhone;
 
 	private String username = null;
 	private String password = null;
 	private String comfirmPsd = null;
-	private String phone = null;
+	// private String phone = null;
+
+	int type = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_reg);
 
+		type = getIntent().getIntExtra("type", 0);
+
 		etUsername = (EditText) findViewById(R.id.et_username);
 		etPassword = (EditText) findViewById(R.id.et_password);
 		etComfirmPsd = (EditText) findViewById(R.id.et_comfirm_psd);
-		etPhone = (EditText) findViewById(R.id.et_phone);
+		// etPhone = (EditText) findViewById(R.id.et_phone);
 
 		btnReg = (Button) findViewById(R.id.btn_reg_now);
 		btnReg.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -57,21 +58,21 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			username = etUsername.getText().toString();
 			password = etPassword.getText().toString();
 			comfirmPsd = etComfirmPsd.getText().toString();
-			phone = etPhone.getText().toString();
+			// phone = etPhone.getText().toString();
 			if (!Util.isNetworkConnected(this)) {
 				toast("木有网络 ( ⊙ o ⊙ ) ");
-			} else if (username.equals("") || password.equals("") || comfirmPsd.equals("") || phone.equals("")) {
+			} else if (username.equals("") || password.equals("") || comfirmPsd.equals("")) {
 				toast("信息不填完整 ");
 			} else if (!comfirmPsd.equals(password)) {
 				toast("两次密码输入不一致");
-			} else if (!Util.isPhoneNumberValid(phone)) {
-				toast("请输入正确的手机号码");
+				// } else if (!Util.isPhoneNumberValid(phone)) {
+				// toast("请输入正确的手机号码");
 			} else {
 				// 开始提交注册信息
 				User bu = new User();
 				bu.setUsername(username);
 				bu.setPassword(password);
-				bu.setPhone(phone);
+				bu.setType(type);
 				bu.signUp(this, new SaveListener() {
 					@Override
 					public void onSuccess() {

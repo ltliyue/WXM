@@ -5,8 +5,6 @@ import cn.bmob.v3.BmobUser;
 /**
  * 用户实体类
  * 
- * @date 2014-4-24
- * @author Stone
  */
 @SuppressWarnings("serial")
 public class User extends BmobUser {
@@ -18,14 +16,14 @@ public class User extends BmobUser {
 	// private String email;
 	// private String regTime;
 
-	private String phone; // 电话
+	private int type; // 
 
-	public String getPhone() {
-		return phone;
+	public int getType() {
+		return type;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setType(int type) {
+		this.type = type;
 	}
 
 }

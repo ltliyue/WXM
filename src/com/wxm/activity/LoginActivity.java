@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,9 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.bmob.push.lib.util.LogUtil;
-import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 
+import com.lidroid.xutils.util.LogUtils;
 import com.wxm.R;
 import com.wxm.model.User;
 import com.wxm.utils.PreferencesUtils;
@@ -110,37 +113,55 @@ public class LoginActivity extends Activity implements OnClickListener {
 			} else if (username.equals("") || password.equals("")) {
 				toast("请输入账号和密码~");
 				break;
-			} else {
-				User bu2 = new User();
-				bu2.setUsername(username);
-				bu2.setPassword(password);
-				bu2.login(this, new SaveListener() {
-					@Override
-					public void onSuccess() {
-						// 保存用户信息
+//			} else {
+//				User bu2 = new User();
+//				bu2.setUsername(username);
+//				bu2.setPassword(password);
+//				bu2.login(this, new SaveListener() {
+//					@Override
+//					public void onSuccess() {
+//						// 保存用户信息
+//						saveUserInfo(username, password);
+//						// 跳转到主页
+//						Intent toHome = new Intent(LoginActivity.this, MainActivity.class);
+//						startActivity(toHome);
+//						finish();
+//					}
+//
+//					@Override
+//					public void onFailure(int arg0, String msg) {
+//						toast("用户名或密码错误");
+//						System.out.println(arg0 + ":!:" + msg);
+//					}
+//				});
+			}else{
+				BmobUser.loginByAccount(this, username, password, new LogInListener<User>() {
+
+		            @Override
+		            public void done(User user, BmobException e) {
+		                // TODO Auto-generated method stub
+		            	// 保存用户信息
 						saveUserInfo(username, password);
+						LogUtils.e("type:::"+user.getType());
+						PreferencesUtils.putInt(LoginActivity.this, "type", user.getType());
 						// 跳转到主页
 						Intent toHome = new Intent(LoginActivity.this, MainActivity.class);
 						startActivity(toHome);
 						finish();
-					}
-
-					@Override
-					public void onFailure(int arg0, String msg) {
-						toast("用户名或密码错误");
-						System.out.println(arg0 + ":!:" + msg);
-					}
-				});
+		            }
+		        });
 			}
 			break;
 
 		case R.id.btn_register_ls:
 			Intent toResetPsdActivity = new Intent(LoginActivity.this, RegisterActivity.class);
+			toResetPsdActivity.putExtra("type", 1);
 			startActivity(toResetPsdActivity);
 			break;
 
 		case R.id.btn_register:
 			Intent toReg = new Intent(LoginActivity.this, RegisterActivity.class);
+			toReg.putExtra("type", 0);
 			startActivity(toReg);
 			break;
 		default:
