@@ -1,7 +1,6 @@
 package com.wxm.model;
 
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.BmobUser;
 
 /**
  * 项目实体类
@@ -15,6 +14,7 @@ public class Project extends BmobObject {
 	private String target;
 	private String request;
 	private String teacher;
+	private String state;
 
 	public String getName() {
 		return name;
@@ -54,6 +54,14 @@ public class Project extends BmobObject {
 
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }

@@ -79,12 +79,18 @@ public class AddProjectActivity extends BaseActivty {
 				showToast("信息不完整！");
 				return;
 			}
+			if (TextUtils.isEmpty(et_zdjs.getText().toString())) {
+				showToast("信息不完整！");
+				return;
+			}
 
 			Project project = new Project();
 			project.setName(et_xmm.getText().toString());
 			project.setDesc(et_xmjj.getText().toString());
 			project.setTarget(et_sjmb.getText().toString());
 			project.setRequest(et_xmyq.getText().toString());
+			project.setTeacher(et_zdjs.getText().toString());
+			project.setState("未开始");
 			project.save(ct, new SaveListener() {
 
 				@Override
@@ -116,38 +122,42 @@ public class AddProjectActivity extends BaseActivty {
 	// et_wxsj.setText(fmtTime.format(dateAndTime.getTime()));
 	// }
 
-//	// 获取日期格式器对象
-//	DateFormat fmtDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
-//
-//	DateFormat fmtDateall = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//
-//	DateFormat fmtTime = new java.text.SimpleDateFormat("HH:mm:ss");
+	// // 获取日期格式器对象
+	// DateFormat fmtDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	//
+	// DateFormat fmtDateall = new
+	// java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//
+	// DateFormat fmtTime = new java.text.SimpleDateFormat("HH:mm:ss");
 
 	// 获取一个日历对象
-//	Calendar dateAndTime = Calendar.getInstance(Locale.CHINA);
-//	// 当点击DatePickerDialog控件的设置按钮时，调用该方法
-//	DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
-//		@Override
-//		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//			// 修改日历控件的年，月，日
-//			// 这里的year,monthOfYear,dayOfMonth的值与DatePickerDialog控件设置的最新值一致
-//			dateAndTime.set(Calendar.YEAR, year);
-//			dateAndTime.set(Calendar.MONTH, monthOfYear);
-//			dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//			// 将页面TextView的显示更新为最新时间
-//			upDateDate();
-//
-//		}
-//	};
+	// Calendar dateAndTime = Calendar.getInstance(Locale.CHINA);
+	// // 当点击DatePickerDialog控件的设置按钮时，调用该方法
+	// DatePickerDialog.OnDateSetListener d = new
+	// DatePickerDialog.OnDateSetListener() {
+	// @Override
+	// public void onDateSet(DatePicker view, int year, int monthOfYear, int
+	// dayOfMonth) {
+	// // 修改日历控件的年，月，日
+	// // 这里的year,monthOfYear,dayOfMonth的值与DatePickerDialog控件设置的最新值一致
+	// dateAndTime.set(Calendar.YEAR, year);
+	// dateAndTime.set(Calendar.MONTH, monthOfYear);
+	// dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+	// // 将页面TextView的显示更新为最新时间
+	// upDateDate();
+	//
+	// }
+	// };
 
-//	TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
-//
-//		// 同DatePickerDialog控件
-//		@Override
-//		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//			dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-//			dateAndTime.set(Calendar.MINUTE, minute);
-//			upDateTime();
-//		}
-//	};
+	// TimePickerDialog.OnTimeSetListener t = new
+	// TimePickerDialog.OnTimeSetListener() {
+	//
+	// // 同DatePickerDialog控件
+	// @Override
+	// public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+	// dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+	// dateAndTime.set(Calendar.MINUTE, minute);
+	// upDateTime();
+	// }
+	// };
 }
