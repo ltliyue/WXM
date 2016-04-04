@@ -1,5 +1,7 @@
 package com.wxm.model;
 
+import java.util.ArrayList;
+
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -15,6 +17,9 @@ public class Project extends BmobObject {
 	private String request;
 	private String teacher;
 	private String state;
+
+	private ArrayList<Integer> rate;
+	private ArrayList<String> stunames;
 
 	public String getName() {
 		return name;
@@ -62,6 +67,22 @@ public class Project extends BmobObject {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public ArrayList<Integer> getRate() {
+		return rate;
+	}
+
+	public void setRate(ArrayList<Integer> rate) {
+		this.rate = rate;
+	}
+
+	public ArrayList<String> getStunames() {
+		return stunames;
+	}
+
+	public void setStunames(ArrayList<String> stunames) {
+		this.stunames = stunames;
 	}
 
 }

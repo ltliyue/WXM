@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/check"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:button="@drawable/checkbox_checked_style"
+    android:gravity="center_vertical"
+    android:inputType="text"
+    android:paddingLeft="10dp"
+    android:text="安装与部署"
+    android:textSize="14sp" />

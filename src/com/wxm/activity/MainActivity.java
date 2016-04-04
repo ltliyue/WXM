@@ -26,6 +26,8 @@ public class MainActivity extends BaseActivty {
 
 	@ViewInject(R.id.listview)
 	ListView listView;
+	
+	List<Project> listData;
 
 	@Override
 	protected void initView() {
@@ -72,14 +74,16 @@ public class MainActivity extends BaseActivty {
 			@Override
 			public void onSuccess(List<Project> arg0) {
 				// TODO Auto-generated method stub
+				listData = arg0;
 				XMListAdapter xmAdapter = new XMListAdapter(ct, arg0);
 				listView.setAdapter(xmAdapter);
 				listView.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
-					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+					public void onItemClick(AdapterView<?> aaa, View arg1, int arg2, long arg3) {
 						// TODO Auto-generated method stub
 						mIntent = new Intent(ct,ProjectInfoActivity.class);
+						mIntent.putExtra("oid", listData.get(arg2).getObjectId());
 						startActivity(mIntent);
 					}
 				});

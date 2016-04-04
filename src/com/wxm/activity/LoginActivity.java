@@ -142,7 +142,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		                // TODO Auto-generated method stub
 		            	// 保存用户信息
 						saveUserInfo(username, password);
-						LogUtils.e("type:::"+user.getType());
+//						LogUtils.e("type:::"+user.getType());
 						PreferencesUtils.putInt(LoginActivity.this, "type", user.getType());
 						// 跳转到主页
 						Intent toHome = new Intent(LoginActivity.this, MainActivity.class);

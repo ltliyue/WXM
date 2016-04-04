@@ -1,5 +1,7 @@
 package com.wxm.activity;
 
+import java.util.ArrayList;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -91,6 +93,12 @@ public class AddProjectActivity extends BaseActivty {
 			project.setRequest(et_xmyq.getText().toString());
 			project.setTeacher(et_zdjs.getText().toString());
 			project.setState("未开始");
+			ArrayList<Integer> ints = new ArrayList<Integer>();
+			for (int i = 0; i < 6; i++) {
+				ints.add(0);
+			}
+			project.setRate(ints);
+			project.setStunames(new ArrayList<String>());
 			project.save(ct, new SaveListener() {
 
 				@Override

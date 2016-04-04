@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical" >
 
     <include layout="@layout/layout_title" />
@@ -14,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingBottom="20dp" >
 
             <TextView
                 android:layout_width="match_parent"
@@ -25,7 +27,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/et_username"
+                android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -120,16 +122,117 @@
                 android:textSize="14sp" />
 
             <CheckBox
-                android:id="@+id/txt_xmjd"
-                android:layout_width="match_parent"
+                android:id="@+id/check1"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:drawableTop="@drawable/checkbox_checked_style"
-                android:inputType="text"
+                android:button="@drawable/checkbox_checked_style"
                 android:clickable="false"
+                android:enabled="false"
                 android:gravity="center_vertical"
-                android:text="-aaaaa-"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="背景目的及意义"
                 android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/check2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/checkbox_checked_style"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="概要设计"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/check3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/checkbox_checked_style"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="详细设计"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/check4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/checkbox_checked_style"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="程序设计"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/check5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/checkbox_checked_style"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="调试与测试"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/check6"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:button="@drawable/checkbox_checked_style"
+                android:clickable="false"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="安装与部署"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#cccccc" />
+
+            <LinearLayout
+                android:id="@+id/lin_ls"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="报名人员："
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/lin_stu"
+                    android:layout_width="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
