@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="30dp"
     android:button="@drawable/checkbox_checked_style"
+    android:enabled="false"
     android:gravity="center_vertical"
     android:inputType="text"
     android:paddingLeft="10dp"

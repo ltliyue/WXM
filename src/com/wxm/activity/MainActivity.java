@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivty {
 
 	@ViewInject(R.id.listview)
 	ListView listView;
-	
+
 	List<Project> listData;
 
 	@Override
@@ -80,11 +80,25 @@ public class MainActivity extends BaseActivty {
 				listView.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
-					public void onItemClick(AdapterView<?> aaa, View arg1, int arg2, long arg3) {
-						// TODO Auto-generated method stub
-						mIntent = new Intent(ct,ProjectInfoActivity.class);
-						mIntent.putExtra("oid", listData.get(arg2).getObjectId());
-						startActivity(mIntent);
+					public void onItemClick(AdapterView<?> aaa, View arg1, int position, long arg3) {
+						// // 除了进行中都能进入
+						// if (!listData.get(position).getState().equals("进行中"))
+						// {
+						// mIntent = new Intent(ct, ProjectInfoActivity.class);
+						// mIntent.putExtra("oid",
+						// listData.get(position).getObjectId());
+						// startActivity(mIntent);
+						// return;
+						// }
+						// 老师和报名的学生可以进入
+						if (listData.get(position).getStunames().contains(getUserName()) || getType() == 1
+								|| listData.get(position).getState().equals("未开始")) {
+							mIntent = new Intent(ct, ProjectInfoActivity.class);
+							mIntent.putExtra("oid", listData.get(position).getObjectId());
+							startActivity(mIntent);
+						} else {
+							showToast("未参加该项目，不能查看");
+						}
 					}
 				});
 			}

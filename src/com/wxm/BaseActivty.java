@@ -65,6 +65,10 @@ public abstract class BaseActivty extends FragmentActivity implements OnClickLis
 	protected int getType() {
 		return PreferencesUtils.getInt(ct, "type", 0);
 	}
+	
+	protected String getUserName() {
+		return PreferencesUtils.getString(this, "username");
+	}
 
 	@Override
 	public void onClick(View v) {
