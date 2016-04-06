@@ -26,8 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="#000000"
-            android:textSize="18.0sp"
-            android:textStyle="bold" />
+            android:textSize="18.0sp" />
 
         <ImageView
             android:id="@id/btn_right"
@@ -36,7 +35,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/tab_more_click"
+            android:src="@drawable/personal_advisory"
             android:visibility="gone" />
     </RelativeLayout>
 

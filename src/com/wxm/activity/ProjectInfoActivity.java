@@ -3,6 +3,7 @@ package com.wxm.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class ProjectInfoActivity extends BaseActivty {
 	@ViewInject(R.id.txt_zdjs)
 	TextView txt_zdjs;
 
+	// ----六个进度控件
 	@ViewInject(R.id.check1)
 	CheckBox check1;
 	@ViewInject(R.id.check2)
@@ -54,6 +56,7 @@ public class ProjectInfoActivity extends BaseActivty {
 	@ViewInject(R.id.check6)
 	CheckBox check6;
 
+	// ----老师选择
 	@ViewInject(R.id.bmry)
 	TextView bmry;
 	@ViewInject(R.id.lin_ls)
@@ -62,9 +65,11 @@ public class ProjectInfoActivity extends BaseActivty {
 	LinearLayout lin_stu;
 	@ViewInject(R.id.btn_sure)
 	Button btn_sure;
+	// ----学生报名
 	@ViewInject(R.id.btn_stu_sure)
 	Button btn_stu_sure;
 
+	// ----进度提交
 	@ViewInject(R.id.lin_stu_add)
 	LinearLayout lin_stu_add;
 	@ViewInject(R.id.edit_txt)
@@ -92,12 +97,13 @@ public class ProjectInfoActivity extends BaseActivty {
 	protected void initData() {
 		setTitleName("项目详情");
 		btn_left.setOnClickListener(this);
+		btn_right.setOnClickListener(this);
 		btn_sure.setOnClickListener(this);
 		btn_stu_sure.setOnClickListener(this);
 		btn_submit.setOnClickListener(this);
 
 		oidString = getIntent().getStringExtra("oid");// 项目id
-		// 进度控件
+		// 进度控件 6个进度
 		checkboxes = new CheckBox[] { check1, check2, check3, check4, check5, check6 };
 
 		findAndRefresh();
@@ -130,6 +136,10 @@ public class ProjectInfoActivity extends BaseActivty {
 				if (thisproject.getState().equals("进行中") && getType() == 0) {
 					lin_stu_add.setVisibility(View.VISIBLE);
 				}
+				// 显示讨论区
+				if (thisproject.getState().equals("进行中")) {
+					btn_right.setVisibility(View.VISIBLE);
+				}
 
 				txt_name.setText(arg0.get(0).getName());
 				txt_xmjj.setText(arg0.get(0).getDesc());
@@ -161,6 +171,7 @@ public class ProjectInfoActivity extends BaseActivty {
 					if (thisproject.getState().equals("未开始") && getType() == 1) {
 						checkBox.setEnabled(true);
 					}
+					// 选择框事件监听
 					checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 						@Override
@@ -188,11 +199,18 @@ public class ProjectInfoActivity extends BaseActivty {
 
 	@Override
 	protected void processClick(View v) {
-		
 		switch (v.getId()) {
+		// 进入讨论区
+		case R.id.btn_right:
+
+			Intent mIntent = new Intent(ct, ChatActivity.class);
+			mIntent.putExtra("oid", oidString);
+			startActivity(mIntent);
+			break;
+		// 老师选择按钮事件
 		case R.id.btn_sure:
 
-			if (stuSure.size()==0) {
+			if (stuSure.size() == 0) {
 				showToast("请至少选择一个学生");
 				return;
 			}
@@ -212,6 +230,7 @@ public class ProjectInfoActivity extends BaseActivty {
 				}
 			});
 			break;
+		// 学生报名事件
 		case R.id.btn_stu_sure:
 
 			thisproject.getStunames().add(getUserName());
@@ -230,7 +249,7 @@ public class ProjectInfoActivity extends BaseActivty {
 				}
 			});
 			break;
-
+		// 学生提交进度事件
 		case R.id.btn_submit:
 			if (edit_txt.getText().toString().equals("")) {
 				showToast("请提交进度内容");
@@ -260,5 +279,4 @@ public class ProjectInfoActivity extends BaseActivty {
 			break;
 		}
 	}
-
 }
