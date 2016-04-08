@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.bmob.v3.BmobQuery;
@@ -21,31 +20,31 @@ import com.wxm.MyBaseAdapter;
 import com.wxm.R;
 import com.wxm.model.Project;
 
-public class MainActivity extends BaseActivty {
+public class MyProjectActivity extends BaseActivty {
 
 	Intent mIntent;
 
 	@ViewInject(R.id.listview)
 	ListView listView;
-	@ViewInject(R.id.btn_my)
-	ImageView btn_my;
 
 	List<Project> listData;
 
 	@Override
 	protected void initView() {
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_my);
 		ViewUtils.inject(this);
 	}
 
 	@Override
 	protected void initData() {
-		setTitleName("微项目列表");
-		if (getType() == 0) {
-			btn_right.setVisibility(View.GONE);
-		}
-		btn_my.setOnClickListener(this);
-		btn_right.setOnClickListener(this);
+		setTitleName("我参加的项目");
+		btn_left.setOnClickListener(this);
+	}
+
+	@Override
+	protected void processClick(View v) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -54,24 +53,9 @@ public class MainActivity extends BaseActivty {
 		getDatas();
 	}
 
-	@Override
-	protected void processClick(View v) {
-		switch (v.getId()) {
-		case R.id.btn_my:
-			mIntent = new Intent(ct, MyProjectActivity.class);
-			startActivity(mIntent);
-			break;
-		case R.id.btn_right:
-			mIntent = new Intent(ct, AddProjectActivity.class);
-			startActivity(mIntent);
-			break;
-		default:
-			break;
-		}
-	}
-
 	private void getDatas() {
 		BmobQuery<Project> bmobQuery = new BmobQuery<Project>();
+		bmobQuery.addWhereContains("stunames", getUserName());
 		bmobQuery.findObjects(ct, new FindListener<Project>() {
 
 			@Override
@@ -84,24 +68,9 @@ public class MainActivity extends BaseActivty {
 
 					@Override
 					public void onItemClick(AdapterView<?> aaa, View arg1, int position, long arg3) {
-						// // 除了进行中都能进入
-						// if (!listData.get(position).getState().equals("进行中"))
-						// {
-						// mIntent = new Intent(ct, ProjectInfoActivity.class);
-						// mIntent.putExtra("oid",
-						// listData.get(position).getObjectId());
-						// startActivity(mIntent);
-						// return;
-						// }
-						// 老师和报名的学生可以进入
-						if (listData.get(position).getStunames().contains(getUserName()) || getType() == 1
-								|| listData.get(position).getState().equals("未开始")) {
-							mIntent = new Intent(ct, ProjectInfoActivity.class);
-							mIntent.putExtra("oid", listData.get(position).getObjectId());
-							startActivity(mIntent);
-						} else {
-							showToast("未参加该项目，不能查看");
-						}
+						mIntent = new Intent(ct, ProjectInfoActivity.class);
+						mIntent.putExtra("oid", listData.get(position).getObjectId());
+						startActivity(mIntent);
 					}
 				});
 			}
@@ -151,4 +120,5 @@ public class MainActivity extends BaseActivty {
 		}
 
 	}
+
 }

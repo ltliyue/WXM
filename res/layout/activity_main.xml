@@ -16,7 +16,7 @@
             android:background="#ffffff" >
 
             <ImageView
-                android:id="@id/btn_left"
+                android:id="@+id/btn_my"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_alignParentLeft="true"
