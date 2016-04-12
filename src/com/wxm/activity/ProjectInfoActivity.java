@@ -106,7 +106,7 @@ public class ProjectInfoActivity extends BaseActivty {
 		// 进度控件 6个进度
 		checkboxes = new CheckBox[] { check1, check2, check3, check4, check5, check6 };
 
-		findAndRefresh();
+		findAndRefresh();// 获得项目详细信息
 	}
 
 	// 根据id查找项目

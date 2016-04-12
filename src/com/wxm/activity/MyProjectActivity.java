@@ -20,6 +20,12 @@ import com.wxm.MyBaseAdapter;
 import com.wxm.R;
 import com.wxm.model.Project;
 
+/**
+ * 我参加的项目
+ * 
+ * @author MaryLee
+ * 
+ */
 public class MyProjectActivity extends BaseActivty {
 
 	Intent mIntent;

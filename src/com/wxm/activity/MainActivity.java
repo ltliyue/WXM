@@ -21,6 +21,12 @@ import com.wxm.MyBaseAdapter;
 import com.wxm.R;
 import com.wxm.model.Project;
 
+/**
+ * 主页
+ * 
+ * @author MaryLee
+ * 
+ */
 public class MainActivity extends BaseActivty {
 
 	Intent mIntent;
@@ -70,6 +76,9 @@ public class MainActivity extends BaseActivty {
 		}
 	}
 
+	/**
+	 * 获得项目列表
+	 */
 	private void getDatas() {
 		BmobQuery<Project> bmobQuery = new BmobQuery<Project>();
 		bmobQuery.findObjects(ct, new FindListener<Project>() {
@@ -84,15 +93,6 @@ public class MainActivity extends BaseActivty {
 
 					@Override
 					public void onItemClick(AdapterView<?> aaa, View arg1, int position, long arg3) {
-						// // 除了进行中都能进入
-						// if (!listData.get(position).getState().equals("进行中"))
-						// {
-						// mIntent = new Intent(ct, ProjectInfoActivity.class);
-						// mIntent.putExtra("oid",
-						// listData.get(position).getObjectId());
-						// startActivity(mIntent);
-						// return;
-						// }
 						// 老师和报名的学生可以进入
 						if (listData.get(position).getStunames().contains(getUserName()) || getType() == 1
 								|| listData.get(position).getState().equals("未开始")) {
@@ -114,6 +114,12 @@ public class MainActivity extends BaseActivty {
 		});
 	}
 
+	/**
+	 * 列表样式适配器
+	 * 
+	 * @author MaryLee
+	 * 
+	 */
 	class XMListAdapter extends MyBaseAdapter<Project, ListView> {
 
 		public XMListAdapter(Context context, List<Project> list) {

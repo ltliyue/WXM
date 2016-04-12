@@ -43,7 +43,7 @@ public class SplashActivity extends BaseActivty {
 
 	@Override
 	protected void initData() {
-        Bmob.initialize(this, "b1961e287dcad6285f2c7782cea01e5b");
+		Bmob.initialize(this, "b1961e287dcad6285f2c7782cea01e5b");
 		mHandler.sendEmptyMessageDelayed(GO_LOGIN, 0);
 	}
 

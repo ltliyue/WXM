@@ -62,7 +62,7 @@ public class ChatActivity extends BaseActivty {
 	@Override
 	protected void processClick(View v) {
 		switch (v.getId()) {
-
+		// 发送键
 		case R.id.btn_publish:
 			publishComment(et_content.getText().toString());
 			break;
@@ -71,6 +71,7 @@ public class ChatActivity extends BaseActivty {
 		}
 	}
 
+	// 查找交流信息
 	private void findComments() {
 		BmobQuery<Chat> query = new BmobQuery<Chat>();
 		query.addWhereEqualTo("projectid", oidString);
@@ -90,6 +91,7 @@ public class ChatActivity extends BaseActivty {
 		});
 	}
 
+	// 保存交流信息到服务器
 	private void publishComment(String content) {
 		Chat comment = new Chat();
 		comment.setChat(content);
@@ -112,6 +114,12 @@ public class ChatActivity extends BaseActivty {
 		});
 	}
 
+	/**
+	 * 列表样式适配器
+	 * 
+	 * @author MaryLee
+	 * 
+	 */
 	private static class MyAdapter extends MyBaseAdapter<Chat, ListView> {
 
 		public MyAdapter(Context context, List<Chat> list) {

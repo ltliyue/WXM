@@ -38,7 +38,6 @@ public class AddProjectActivity extends BaseActivty {
 
 	@Override
 	protected void initView() {
-		// TODO Auto-generated method stub
 		setContentView(R.layout.activity_addproject);
 		ViewUtils.inject(this);
 	}
@@ -46,23 +45,14 @@ public class AddProjectActivity extends BaseActivty {
 	@Override
 	protected void initData() {
 		setTitleName("新建微项目");
-		btn_left.setOnClickListener(this);
-		btn_lr_now.setOnClickListener(this);
+		btn_left.setOnClickListener(this);// 返回键
+		btn_lr_now.setOnClickListener(this);// 保存按钮点击事件
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void processClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		// case R.id.et_wxrq:
-		// DatePickerDialog dateDlg = new DatePickerDialog(ct, d,
-		// dateAndTime.get(Calendar.YEAR),
-		// dateAndTime.get(Calendar.MONTH),
-		// dateAndTime.get(Calendar.DAY_OF_MONTH));
-		// dateDlg.show();
-		//
-		// break;
+		// 保存按钮点击事件
 		case R.id.btn_lr_now:
 
 			if (TextUtils.isEmpty(et_xmm.getText().toString())) {
@@ -103,14 +93,12 @@ public class AddProjectActivity extends BaseActivty {
 
 				@Override
 				public void onSuccess() {
-					// TODO Auto-generated method stub
 					showToast("创建项目成功~");
 					finish();
 				}
 
 				@Override
 				public void onFailure(int arg0, String arg1) {
-					// TODO Auto-generated method stub
 					showToast("创建项目失败，请重试");
 				}
 			});
@@ -121,51 +109,4 @@ public class AddProjectActivity extends BaseActivty {
 			break;
 		}
 	}
-
-	// private void upDateDate() {
-	// et_wxrq.setText(fmtDate.format(dateAndTime.getTime()));
-	// }
-	//
-	// private void upDateTime() {
-	// et_wxsj.setText(fmtTime.format(dateAndTime.getTime()));
-	// }
-
-	// // 获取日期格式器对象
-	// DateFormat fmtDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
-	//
-	// DateFormat fmtDateall = new
-	// java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	//
-	// DateFormat fmtTime = new java.text.SimpleDateFormat("HH:mm:ss");
-
-	// 获取一个日历对象
-	// Calendar dateAndTime = Calendar.getInstance(Locale.CHINA);
-	// // 当点击DatePickerDialog控件的设置按钮时，调用该方法
-	// DatePickerDialog.OnDateSetListener d = new
-	// DatePickerDialog.OnDateSetListener() {
-	// @Override
-	// public void onDateSet(DatePicker view, int year, int monthOfYear, int
-	// dayOfMonth) {
-	// // 修改日历控件的年，月，日
-	// // 这里的year,monthOfYear,dayOfMonth的值与DatePickerDialog控件设置的最新值一致
-	// dateAndTime.set(Calendar.YEAR, year);
-	// dateAndTime.set(Calendar.MONTH, monthOfYear);
-	// dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-	// // 将页面TextView的显示更新为最新时间
-	// upDateDate();
-	//
-	// }
-	// };
-
-	// TimePickerDialog.OnTimeSetListener t = new
-	// TimePickerDialog.OnTimeSetListener() {
-	//
-	// // 同DatePickerDialog控件
-	// @Override
-	// public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-	// dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-	// dateAndTime.set(Calendar.MINUTE, minute);
-	// upDateTime();
-	// }
-	// };
 }
